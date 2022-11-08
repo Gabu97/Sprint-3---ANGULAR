@@ -23,6 +23,7 @@ var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 		error++;
 	} else {
 		if (regexName.test(fName.value) == false) {
+			fName.style.border = "2px solid red";
 			errorName.classList.add("invalid-feedback");
 			errorName.classList.add("d-block");
        
@@ -32,6 +33,7 @@ var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 		error++;
 	} else {
 		if (regexEmail.test(fEmail.value) == false) {
+			fEmail.style.border = "2px solid red";
 			errorEmail.classList.add("invalid-feedback");
 			errorEmail.classList.add("d-block");
        
@@ -40,6 +42,7 @@ var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 		error++;
 	} else {
 		if (regexPhone.test(fPhone.value) == false) {
+			fPhone.style.border = "2px solid red";
 			errorPhone.classList.add("invalid-feedback");
 			errorPhone.classList.add("d-block");
        
@@ -48,6 +51,7 @@ var regexEmail = /^\w+([\.\+\-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
 		error++;
 	} else {
 		if (regexPassword.test(fPassword.value) == false) {
+			fPassword.style.border = "2px solid red";
 			errorPassword.classList.add("invalid-feedback");
 			errorPassword.classList.add("d-block");
        
