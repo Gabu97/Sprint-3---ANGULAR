@@ -77,7 +77,7 @@ function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
   let product;
   for (let i = 0; i < products.length; i++) {
-    product = products[id-1];
+    product = products[id - 1];
   }
   // 2. Add found product to the cartList array
   cartList.push(product);
@@ -98,9 +98,8 @@ function calculateTotal() {
   // Calculate total price of the cart using the "cartList" array
   let total = 0;
 
-  cartList.forEach((item) => {
-    total += item.price;
-
+  cart.forEach((item) => {
+    total += item.subtotal;
   });
 
   return total.toFixed(2);
@@ -125,7 +124,6 @@ function generateCart() {
 
   cart = [];
   for (let i = 0; i < cartList.length; i++) {
-    
     if (!cart.includes(cartList[i])) {
       cartList[i].quantity = 1;
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
@@ -140,27 +138,27 @@ function generateCart() {
 
 // Exercise 5
 function applyPromotionsCart() {
-    // Apply promotions to each item in the array "cart"
-    for (let i = 0; i < cart.length; i++) {
-        if (cart[i].id == 1 && cart[i].quantity >= 3) {
-            cart[i].subtotalWithDiscount = cart[i].subtotal - 10;
-           // cart[i].subtotal = cart[i].subtotalWithDiscount;
-        } else if (cart[i].id == 1 && cart[i].quantity < 3){
-            cart[i].subtotalWithDiscount = "";
-        }
-
-        if (cart[i].id == 3 && cart[i].quantity >= 10) {
-            cart[i].subtotalWithDiscount = cart[i].subtotal - cart[i].subtotal * 0.3;
-           // cart[i].subtotal = cart[i].subtotalWithDiscount;
-        } else if (cart[i].id == 3 && cart[i].quantity < 10){
-            cart[i].subtotalWithDiscount = "";
-        }
+  // Apply promotions to each item in the array "cart"
+  for (let i = 0; i < cart.length; i++) {
+    if (cart[i].id == 1 && cart[i].quantity >= 3) {
+      cart[i].subtotalWithDiscount = cart[i].subtotal - 10;
+      cart[i].subtotal = cart[i].subtotalWithDiscount;
+    } else if (cart[i].id == 1 && cart[i].quantity < 3) {
+      cart[i].subtotalWithDiscount = "";
     }
+
+    if (cart[i].id == 3 && cart[i].quantity >= 10) {
+      cart[i].subtotalWithDiscount = cart[i].subtotal - cart[i].subtotal * 0.3;
+      cart[i].subtotal = cart[i].subtotalWithDiscount;
+    } else if (cart[i].id == 3 && cart[i].quantity < 10) {
+      cart[i].subtotalWithDiscount = "";
+    }
+  }
 }
 // Exercise 6
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
-generateCart();
+  generateCart();
   /*let th =  document.createElement('th');
 th.textContent = 'nombreproducto';
 let td = document.createElement('td');
@@ -171,15 +169,12 @@ cartBody.appendChild(td);*/
   const cartBody = document.getElementById("cart_list");
 
   cartBody.innerHTML = "";
- 
 
   const cartTotal = calculateTotal();
 
   cartTotal.innerHTML = "";
 
-
   cart.forEach((item) => {
-    
     const table = document.createElement("tr");
 
     const tableTitle = document.createElement("th");
@@ -190,21 +185,19 @@ cartBody.appendChild(td);*/
     tableQuantity.textContent = item.quantity;
     const tableSubtotal = document.createElement("td");
     tableSubtotal.textContent = item.subtotal;
-    const tableSubtotalWithDiscount = document.createElement("td");
-    tableSubtotalWithDiscount.textContent = item.subtotalWithDiscount;
-   
-    const totalPrice = document.getElementById("total_price");
-    let discountTotal = item.subtotal - item.subtotalWithDiscount;
-    totalPrice.innerHTML = cartTotal - discountTotal;
+    // const tableSubtotalWithDiscount = document.createElement("td");
+    //tableSubtotalWithDiscount.textContent = item.subtotalWithDiscount;
 
+    const totalPrice = document.getElementById("total_price");
+    //let discountTotal = item.subtotal - item.subtotalWithDiscount;
+    //totalPrice.innerHTML = cartTotal - discountTotal;
+    totalPrice.innerHTML = cartTotal;
     cartBody.appendChild(table);
     table.appendChild(tableTitle);
     table.appendChild(tablePrice);
     table.appendChild(tableQuantity);
     table.appendChild(tableSubtotal);
-    table.appendChild(tableSubtotalWithDiscount);
-  
-   
+    //table.appendChild(tableSubtotalWithDiscount);
   });
 }
 
