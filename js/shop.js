@@ -88,6 +88,9 @@ function cleanCart() {
   const cartBody = document.querySelector("#cart_list");
   cartBody.innerHTML = "";
   document.getElementById("total_price").innerHTML = 0;
+  const countProduct = document.querySelector("#count_product");
+  countProduct.innerHTML = "0";
+  document.getElementById("count_product").innerHTML = 0;
   cartList = [];
   cart = [];
   console.log(cartList);
@@ -122,14 +125,22 @@ function generateCart() {
   // Using the "cartlist" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
   cart = [];
+
+
+  const countProduct = document.getElementById('count_product');
   for (let i = 0; i < cartList.length; i++) {
     if (!cart.includes(cartList[i])) {
       cartList[i].quantity = 1;
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
       cart.push(cartList[i]);
+      countProduct.innerHTML++;
+      
     } else {
       cartList[i].quantity += 1;
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
+      countProduct.innerHTML++;
+     
+      
     }
   }
   applyPromotionsCart();
@@ -138,10 +149,12 @@ function generateCart() {
 // Exercise 5
 function applyPromotionsCart() {
   // Apply promotions to each item in the array "cart"
+
   for (let i = 0; i < cart.length; i++) {
     if (cart[i].id == 1 && cart[i].quantity >= 3) {
       cart[i].subtotalWithDiscount = cart[i].subtotal - 10;
       cart[i].subtotal = cart[i].subtotalWithDiscount;
+     
     } else if (cart[i].id == 1 && cart[i].quantity < 3) {
       cart[i].subtotalWithDiscount = "";
     }
@@ -149,6 +162,7 @@ function applyPromotionsCart() {
     if (cart[i].id == 3 && cart[i].quantity >= 10) {
       cart[i].subtotalWithDiscount = cart[i].subtotal - cart[i].subtotal * 0.3;
       cart[i].subtotal = cart[i].subtotalWithDiscount;
+      
     } else if (cart[i].id == 3 && cart[i].quantity < 10) {
       cart[i].subtotalWithDiscount = "";
     }
