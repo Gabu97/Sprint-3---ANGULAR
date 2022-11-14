@@ -75,12 +75,12 @@ var total = 0;
 // Exercise 1
 function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
-  //let product;
-  //for (let i = 0; i < products.length; i++) {
-  //  product = products[id - 1];
-  //}
+  let product;
+  for (let i = 0; i < products.length; i++) {
+    product = products[id - 1];
+  }
   // 2. Add found product to the cartList array
-  // cartList.push(product);
+   cartList.push(product);
 }
 
 // Exercise 2
@@ -121,7 +121,7 @@ function calculateTotal() {
 function generateCart() {
   // Using the "cartlist" array that contains all the items in the shopping cart,
   // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
-  /*cart = [];
+  cart = [];
   for (let i = 0; i < cartList.length; i++) {
     if (!cart.includes(cartList[i])) {
       cartList[i].quantity = 1;
@@ -132,7 +132,7 @@ function generateCart() {
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
     }
   }
-  applyPromotionsCart();*/
+  applyPromotionsCart();
 }
 
 // Exercise 5
@@ -158,7 +158,7 @@ function applyPromotionsCart() {
 // Exercise 6
 function printCart() {
   // Fill the shopping cart modal manipulating the shopping cart dom
-
+generateCart();
   /*let th =  document.createElement('th');
 th.textContent = 'nombreproducto';
 let td = document.createElement('td');
@@ -185,6 +185,9 @@ cartBody.appendChild(td);*/
     tableQuantity.textContent = item.quantity;
     const tableSubtotal = document.createElement("td");
     tableSubtotal.textContent = item.subtotal;
+   // const tableRemove = document.createElement('td');
+   // tableRemove.innerHTML = '<button class="btn btn-outline-dark" onclick="removeFromCart('+element.id+')"><i class="fa fa-trash"></button>';
+
     // const tableSubtotalWithDiscount = document.createElement("td");
     //tableSubtotalWithDiscount.textContent = item.subtotalWithDiscount;
 
@@ -197,6 +200,7 @@ cartBody.appendChild(td);*/
     table.appendChild(tablePrice);
     table.appendChild(tableQuantity);
     table.appendChild(tableSubtotal);
+   // table.appendChild(tableRemove);
     //table.appendChild(tableSubtotalWithDiscount);
   });
 }
@@ -208,7 +212,7 @@ function addToCart(id) {
   // Refactor previous code in order to simplify it
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cart array or update its quantity in case it has been added previously.
-  let product;
+  /*let product;
   for (let i = 0; i < products.length; i++) {
     product = products[id - 1];
 
@@ -225,18 +229,33 @@ function addToCart(id) {
     applyPromotionsCart();
 break;
 
-  }
+  }*/
 }
 
 // Exercise 8
 function removeFromCart(id) {
   // 1. Loop for to the array products to get the item to add to cart
   // 2. Add found product to the cartList array
+
+  /*let product;
+  for (let i = 0; i < products.length; i++) {
+    product = products[id - 1];
+
+    if (cart.includes(product)) {
+      let indexItem = cart.indexOf(product);
+      cart[indexItem].quantity--;
+      cart[indexItem].subtotal = cart[indexItem].quantity * cart[indexItem].price;
+    } else {
+      cart.splice(product);
+    }
+    applyPromotionsCart();
+break;
+
+  }*/
 }
 
 function open_modal() {
   console.log("Open Modal");
   printCart();
-
-  applyPromotionsCart();
+ 
 }
