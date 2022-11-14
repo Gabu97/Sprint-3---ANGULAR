@@ -76,11 +76,13 @@ var total = 0;
 function buy(id) {
   // 1. Loop for to the array products to get the item to add to cart
   let product;
+  const countProduct = document.getElementById('count_product');
   for (let i = 0; i < products.length; i++) {
     product = products[id - 1];
   }
   // 2. Add found product to the cartList array
    cartList.push(product);
+   countProduct.innerHTML++;
 }
 
 // Exercise 2
@@ -127,18 +129,18 @@ function generateCart() {
   cart = [];
 
 
-  const countProduct = document.getElementById('count_product');
+
   for (let i = 0; i < cartList.length; i++) {
     if (!cart.includes(cartList[i])) {
       cartList[i].quantity = 1;
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
       cart.push(cartList[i]);
-      countProduct.innerHTML++;
+     
       
     } else {
       cartList[i].quantity += 1;
       cartList[i].subtotal = cartList[i].quantity * cartList[i].price;
-      countProduct.innerHTML++;
+      
      
       
     }
