@@ -1,5 +1,8 @@
 // Exercise 6
-function validate() {
+const submitBtn = document.getElementById("btn");
+
+function validate(e) {
+  e.preventDefault();
   error = 0;
 
   var regexName = /^[A-Za-z ]+$/;
@@ -25,29 +28,34 @@ function validate() {
   var errorPassword = document.getElementById("errorPassword");
 
   // Validate fields entered by the user: name, phone, password, and email
-  if (fName.value == "" || fName.value.length < 3) {
+  if (
+    fName.value == "" ||
+    fName.value.length < 3 ||
+    regexName.test(fName.value) == false
+  ) {
     fName.style.border = "2px solid red";
     errorName.classList.add("invalid-feedback");
     errorName.classList.add("d-block");
+    error++;
   } else {
-    if (regexName.test(fName.value) == false) {
-      fName.style.border = "2px solid red";
-      errorName.classList.add("invalid-feedback");
-      errorName.classList.add("d-block");
-    }
+    fName.style.border = "2px solid green";
+    errorName.classList.replace("invalid-feedback", "valid-feedback");
+    errorName.classList.remove("d-block");
   }
 
-  if (fEmail.value == "" || fEmail.value.length < 3) {
+  if (
+    fEmail.value == "" ||
+    fEmail.value.length < 3 ||
+    regexEmail.test(fEmail.value) == false
+  ) {
     fEmail.style.border = "2px solid red";
     errorEmail.classList.add("invalid-feedback");
     errorEmail.classList.add("d-block");
     error++;
   } else {
-    if (regexEmail.test(fEmail.value) == false) {
-      fEmail.style.border = "2px solid red";
-      errorEmail.classList.add("invalid-feedback");
-      errorEmail.classList.add("d-block");
-    }
+    fEmail.style.border = "2px solid green";
+    errorEmail.classList.replace("invalid-feedback", "valid-feedback");
+    errorEmail.classList.remove("d-block");
   }
 
   if (
@@ -59,7 +67,11 @@ function validate() {
     errorAddress.classList.add("invalid-feedback");
     errorAddress.classList.add("d-block");
     error++;
-  } 
+  } else {
+    fAddress.style.border = "2px solid green";
+    errorAddress.classList.replace("invalid-feedback", "valid-feedback");
+    errorAddress.classList.remove("d-block");
+  }
 
   if (
     fLastN.value == "" ||
@@ -70,14 +82,22 @@ function validate() {
     errorLastN.classList.add("invalid-feedback");
     errorLastN.classList.add("d-block");
     error++;
-  } 
+  } else {
+    fLastN.style.border = "2px solid green";
+    errorLastN.classList.replace("invalid-feedback", "valid-feedback");
+    errorLastN.classList.remove("d-block");
+  }
 
   if (fPhone.value == "" || regexPhone.test(fPhone.value) == false) {
     fPhone.style.border = "2px solid red";
     errorPhone.classList.add("invalid-feedback");
     errorPhone.classList.add("d-block");
     error++;
-  } 
+  } else {
+    fPhone.style.border = "2px solid green";
+    errorPhone.classList.replace("invalid-feedback", "valid-feedback");
+    errorPhone.classList.remove("d-block");
+  }
 
   if (
     fPassword.value == "" ||
@@ -88,13 +108,23 @@ function validate() {
     errorPassword.classList.add("invalid-feedback");
     errorPassword.classList.add("d-block");
     error++;
-  } 
-
-  if (error > 0 ){
-    alert("ERROR") 
   } else {
-    OK
+    fPassword.style.border = "2px solid green";
+    errorPassword.classList.replace("invalid-feedback", "valid-feedback");
+    errorPassword.classList.remove("d-block");
   }
+}
 
+function trhowError(){
+  if (error > 0) {
+    alert("ERROR");
+  } else {
+    alert("OK");
   }
+}
 
+submitBtn.addEventListener("click", validate);
+submitBtn.addEventListener("click", trhowError);
+
+
+document.addEventListener("click", validate);
